@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+  portfolio-item-service:
+    image:  ahmetturkyilmaz/programmer-service:latest
+    container_name: programmer-service
+    env_file: docker-compose.env
+    ports:
+      - 9086:9086
+    networks:
+      - services
+    working_dir: /opt/app
+    command: ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/programmer-service.jar"]
+
+
+networks:
+  services:
+    external:
+      name: services
